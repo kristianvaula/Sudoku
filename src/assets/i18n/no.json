@@ -1,0 +1,8 @@
+{
+  "translation" : {
+    "sudoku" : "SUDOKU",
+    "start" : "START",
+    "create-board" : "NYTT BRETT",
+    "change-language":  "Endre Språk"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "translation" : {
+    "sudoku" : "SUDOKU",
+    "start" : "START",
+    "create-board" : "CREATE BOARD",
+    "change-language":  "CHANGE LANGUAGE",
+    "return": "RETURN"
+  }
+}
