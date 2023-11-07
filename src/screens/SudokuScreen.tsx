@@ -5,16 +5,24 @@ import {Button} from 'react-native-elements';
 import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Entypo';
 import {COLORS} from '../values/colors';
+import NumberInterface from '../components/NumberInterface';
+import Grid from '../components/Grid';
 
 export function SudokuScreen(): JSX.Element {
   const {t} = useTranslation();
+  const handleNumberPress = (number: number) => {
+    console.log(number);
+  };
+  const handleGridPress = (row: number, column: number) => {
+    console.log(row, column);
+  };
 
   return (
     <View style={gStyle.root}>
       <View style={gStyle.defaultContainer}>
-        <View style={styles.sudokuContainer}></View>
+        <Grid onNumberPress={handleGridPress} />
       </View>
-      <View style={styles.numberContainer}></View>
+      <NumberInterface onNumberPress={handleNumberPress} />
       <View style={styles.choiceContainer}>
         <Button
           icon={<Icon name="eraser" size={25} color="white" />}
@@ -39,7 +47,6 @@ export function SudokuScreen(): JSX.Element {
 
 const styles = StyleSheet.create({
   sudokuContainer: {
-    backgroundColor: COLORS.white,
     width: '100%',
     height: 500,
     marginTop: 50,
