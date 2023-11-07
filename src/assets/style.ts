@@ -37,4 +37,22 @@ export default StyleSheet.create({
     fontSize: 20,
     borderWidth: 3,
   },
+  largeButtonContainer: {
+    width: '75%',
+    margin: 20,
+  },
+  mediumButtonContainer: {
+    width: '40%',
+    margin: 20,
+  },
+  smallButtonContainer: {
+    width: '25%',
+    margin: 20,
+  },
+  button: {
+    backgroundColor: COLORS.darkBackground,
+  },
+  buttonDark: {
+    backgroundColor: COLORS.black,
+  },
 });
