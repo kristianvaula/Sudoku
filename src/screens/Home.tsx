@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import '../assets/i18n/i18n';
 import {StyleSheet, View, Text} from 'react-native';
-import {COLORS} from '../values/colors';
 import {useTranslation} from 'react-i18next';
 import LanguageSwitch from '../components/LanguageSwitch';
 import Button from '../components/Button';
@@ -33,15 +32,15 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
       <View style={[gStyle.fullWidth, gStyle.alignCenter]}>
         <Button
           text={t('start')}
-          containerStyle={styles.buttonContainer}
-          buttonStyle={styles.button}
+          containerStyle={gStyle.largeButtonContainer}
+          buttonStyle={gStyle.button}
           titleStyle={gStyle.mediumText}
           onPress={() => navigation.navigate('Sudoku')}
         />
         <Button
           text={t('create-board')}
-          containerStyle={styles.buttonContainer}
-          buttonStyle={styles.button}
+          containerStyle={gStyle.largeButtonContainer}
+          buttonStyle={gStyle.button}
           titleStyle={gStyle.mediumText}
           onPress={() => navigation.navigate('Create')}
         />
@@ -72,12 +71,5 @@ const styles = StyleSheet.create({
   languageSwitch: {
     margin: 5,
     width: '75%',
-  },
-  buttonContainer: {
-    width: '75%',
-    marginTop: 20,
-  },
-  button: {
-    backgroundColor: COLORS.darkBackground,
   },
 });

@@ -4,6 +4,8 @@
     "start" : "START",
     "create-board" : "CREATE BOARD",
     "change-language":  "CHANGE LANGUAGE",
-    "return": "RETURN"
+    "return": "RETURN",
+    "erase": "Erase",
+    "notes": "Notes"
   }
 }
