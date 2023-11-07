@@ -1,5 +1,4 @@
 import React from 'react';
-import '../assets/i18n/i18n';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {COLORS} from '../values/colors';
 
