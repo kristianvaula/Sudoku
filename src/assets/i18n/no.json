@@ -1,11 +1,16 @@
 {
   "translation" : {
     "sudoku" : "SUDOKU",
-    "start" : "START",
+    "start" : "SPILL",
     "create-board" : "NYTT BRETT",
     "change-language":  "Endre Språk",
     "Return": "TILBAKE",
     "erase": "Slett",
-    "notes": "Noter"
+    "notes": "Noter",
+    "easy": "LETT",
+    "medium": "MIDDELS",
+    "hard": "VANSKELIG",
+    "random": "TILFELDIG",
+    "save": "Lagre"
   }
 }

@@ -9,7 +9,7 @@ export type SudokuBoard = {
 export type RootStackParamList = {
   Home: undefined;
   Sudoku: {board: SudokuBoard};
-  Create: undefined;
+  Create: {board: SudokuBoard};
   BoardChooser: undefined;
 };
 

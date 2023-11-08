@@ -1,11 +1,16 @@
 {
   "translation" : {
     "sudoku" : "SUDOKU",
-    "start" : "START",
+    "start" : "PLAY",
     "create-board" : "CREATE BOARD",
     "change-language":  "CHANGE LANGUAGE",
     "return": "RETURN",
     "erase": "Erase",
-    "notes": "Note"
+    "notes": "Note",
+    "easy": "EASY",
+    "medium": "MEDIUM",
+    "hard": "HARD",
+    "random": "RANDOM",
+    "save": "Save"
   }
 }
