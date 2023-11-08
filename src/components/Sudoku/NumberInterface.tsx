@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {COLORS} from '../values/colors';
+import {COLORS} from '../../values/colors';
 
 type NumberInterfaceProps = {
   onNumberPress: (number: number) => void;
