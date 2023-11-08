@@ -3,4 +3,5 @@ export const COLORS = {
   darkBackground: '#4C1F1F',
   white: '#FFFFFF',
   black: '#000000',
+  red: '#ff6a6a',
 };
