@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import gStyle from '../assets/style';
 import {RootStackParamList} from '../types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
+import {createEmptyBoard} from '../utils/SudokuUtils';
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -42,7 +43,9 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
           containerStyle={gStyle.largeButtonContainer}
           buttonStyle={gStyle.button}
           titleStyle={gStyle.mediumText}
-          onPress={() => navigation.navigate('Create')}
+          onPress={() =>
+            navigation.navigate('Create', {board: createEmptyBoard()})
+          }
         />
       </View>
       <View style={[styles.languageBox, gStyle.fullWidth, gStyle.alignCenter]}>

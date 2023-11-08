@@ -48,15 +48,14 @@ function App(): JSX.Element {
         />
         <RootStack.Screen
           name="Create"
-          component={CreateScreen}
           options={{
             title: '',
             headerStyle: {
               backgroundColor: COLORS.lightBackground,
             },
-            headerTintColor: COLORS.white,
-          }}
-        />
+          }}>
+          {({route}) => <CreateScreen board={route.params.board} />}
+        </RootStack.Screen>
       </RootStack.Navigator>
     </NavigationContainer>
   );
