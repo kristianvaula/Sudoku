@@ -7,18 +7,17 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {COLORS} from '../values/colors';
 import NumberInterface from '../components/Sudoku/NumberInterface';
 import Grid from '../components/Sudoku/Grid';
-import {DrawMode} from '../types/types';
+import {DrawMode, SudokuBoard} from '../types/types';
 
-export function SudokuScreen(): JSX.Element {
+type SudokuScreenProps = {
+  board: SudokuBoard;
+};
+
+export function SudokuScreen({board}: SudokuScreenProps): JSX.Element {
   const {t} = useTranslation();
 
-  const [gridValues, setValues] = useState(
-    Array.from({length: 9}, () => Array.from({length: 9}, () => 0)),
-  );
-
-  const [gridMarked, setMarked] = useState(
-    Array.from({length: 9}, () => Array.from({length: 9}, () => 0)),
-  );
+  const [gridValues, setValues] = useState(board.values);
+  const [gridMarked, setMarked] = useState(board.markers);
 
   const [drawMode, setDrawMode] = useState(DrawMode.Pencil);
   const [selectedItem, setSelectedItem] = useState<[number, number]>([-1, -1]);
