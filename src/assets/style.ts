@@ -14,6 +14,9 @@ export default StyleSheet.create({
   alignCenter: {
     alignItems: 'center',
   },
+  justifyCenter: {
+    justifyContent: 'center',
+  },
   defaultContainer: {
     alignItems: 'center',
     width: '100%',
