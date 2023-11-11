@@ -11,6 +11,12 @@
     "medium": "MEDIUM",
     "hard": "HARD",
     "random": "RANDOM",
-    "save": "Save"
+    "custom": "CUSTOM",
+    "ok": "OK",
+    "save": "Save",
+    "save-board": "Save Board",
+    "invalid-board":"Invalid board, control values and try again.",
+    "board-saved": "Board saved successfully.",
+    "board-not-saved": "Board not saved, try again."
   }
 }

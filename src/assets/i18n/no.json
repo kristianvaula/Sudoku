@@ -11,6 +11,12 @@
     "medium": "MIDDELS",
     "hard": "VANSKELIG",
     "random": "TILFELDIG",
-    "save": "Lagre"
+    "custom": "EGENDEFINERT",
+    "ok": "OK",
+    "save": "Lagre",
+    "save-board": "Lagre Brett",
+    "invalid-board": "Ugyldig brett, kontroller verdier og prøv igjen.",
+    "board-saved": "Brett lagret.",
+    "board-not-saved": "Brett kunne ikke lagres, prøv igjen."
   }
 }
