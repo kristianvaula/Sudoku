@@ -6,6 +6,18 @@ export type SudokuBoard = {
   createdAt: string;
 };
 
+type SudokuGrid = {
+  value: number[][];
+  solution: number[][];
+  difficulty: string;
+};
+
+export type SudokuData = {
+  newboard: {
+    grids: SudokuGrid[];
+  };
+};
+
 export type RootStackParamList = {
   Home: undefined;
   Sudoku: {board: SudokuBoard};
@@ -14,10 +26,10 @@ export type RootStackParamList = {
 };
 
 export enum Difficulty {
-  Unknown = 'unknown',
   Easy = 'easy',
   Medium = 'medium',
   Hard = 'hard',
+  Custom = 'custom',
 }
 
 export const getDifficulty = (difficulty: string): Difficulty => {
@@ -29,7 +41,7 @@ export const getDifficulty = (difficulty: string): Difficulty => {
     case 'hard':
       return Difficulty.Hard;
     default:
-      return Difficulty.Unknown;
+      return Difficulty.Custom;
   }
 };
 
