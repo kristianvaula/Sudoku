@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Home} from './src/screens/Home';
 import {SudokuScreen} from './src/screens/SudokuScreen';
 import {CreateScreen} from './src/screens/CreateScreen';
@@ -7,10 +7,15 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from './src/types/types';
 import {COLORS} from './src/values/colors';
 import {BoardChooser} from './src/screens/BoardChooser';
+import {initDefaultBoards} from './src/utils/StorageUtil';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
+  useEffect(() => {
+    initDefaultBoards();
+  });
+
   return (
     <NavigationContainer>
       <RootStack.Navigator>
@@ -54,7 +59,9 @@ function App(): JSX.Element {
               backgroundColor: COLORS.lightBackground,
             },
           }}>
-          {({route}) => <CreateScreen board={route.params.board} />}
+          {({route, navigation}) => (
+            <CreateScreen board={route.params.board} navigation={navigation} />
+          )}
         </RootStack.Screen>
       </RootStack.Navigator>
     </NavigationContainer>

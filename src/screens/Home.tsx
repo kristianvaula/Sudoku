@@ -7,7 +7,7 @@ import Button from '../components/Button';
 import gStyle from '../assets/style';
 import {RootStackParamList} from '../types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
-import {createEmptyBoard} from '../utils/SudokuUtils';
+import {createEmptyBoard} from '../utils/SudokuUtil';
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 

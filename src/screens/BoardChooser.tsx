@@ -2,17 +2,19 @@ import React from 'react';
 import '../assets/i18n/i18n';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {createEmptyBoard, getRandomBoard} from '../utils/SudokuUtils';
+import {getRandomBoard} from '../utils/SudokuUtil';
 import Button from '../components/Button';
 import gStyle from '../assets/style';
-import {RootStackParamList} from '../types/types';
+import {Difficulty, RootStackParamList} from '../types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
+import {getBoard} from '../utils/StorageUtil';
 
 enum BoardChoice {
   EASY,
   MEDIUM,
   HARD,
   RANDOM,
+  CUSTOM,
 }
 type BoardChooserScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -27,19 +29,34 @@ export function BoardChooser({
   const handleButtonPress = async (choice: BoardChoice) => {
     switch (choice) {
       case BoardChoice.EASY:
-        const easyBoard = createEmptyBoard();
-        navigation.navigate('Sudoku', {board: easyBoard});
+        const easyBoard = await getBoard(Difficulty.Easy);
+        if (easyBoard !== null) {
+          navigation.navigate('Sudoku', {board: easyBoard});
+        } else {
+          navigation.goBack();
+        }
         break;
       case BoardChoice.MEDIUM:
-        const mediumBoard = createEmptyBoard();
-        navigation.navigate('Sudoku', {board: mediumBoard});
+        const mediumBoard = await getBoard(Difficulty.Medium);
+        if (mediumBoard !== null) {
+          navigation.navigate('Sudoku', {board: mediumBoard});
+        } else {
+          navigation.goBack();
+        }
         break;
       case BoardChoice.HARD:
-        const hardBoard = createEmptyBoard();
-        navigation.navigate('Sudoku', {board: hardBoard});
+        const hardBoard = await getBoard(Difficulty.Hard);
+        if (hardBoard !== null) {
+          navigation.navigate('Sudoku', {board: hardBoard});
+        } else {
+          navigation.goBack();
+        }
         break;
       case BoardChoice.RANDOM:
         navigation.navigate('Sudoku', {board: await getRandomBoard()});
+        break;
+      case BoardChoice.CUSTOM:
+        // TODO implement custom board selection
         break;
     }
   };
@@ -76,6 +93,13 @@ export function BoardChooser({
         />
         <Button
           text={t('random')}
+          containerStyle={gStyle.largeButtonContainer}
+          buttonStyle={gStyle.button}
+          titleStyle={gStyle.mediumText}
+          onPress={() => handleButtonPress(BoardChoice.RANDOM)}
+        />
+        <Button
+          text={t('custom')}
           containerStyle={gStyle.largeButtonContainer}
           buttonStyle={gStyle.button}
           titleStyle={gStyle.mediumText}

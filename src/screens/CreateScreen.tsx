@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import gStyle from '../assets/style';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import {Button} from 'react-native-elements';
 import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -8,14 +8,21 @@ import {COLORS} from '../values/colors';
 import NumberInterface from '../components/Sudoku/NumberInterface';
 import Grid from '../components/Sudoku/Grid';
 import {Difficulty, DrawMode, SudokuBoard} from '../types/types';
-import {isValidBoard} from '../utils/SudokuUtils';
+import {isValidBoard} from '../utils/SudokuUtil';
 import uuid from 'react-native-uuid';
+import {RootStackParamList} from '../types/types';
+import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
+import {saveBoard} from '../utils/StorageUtil';
 
 type CreateScreenProps = {
   board: SudokuBoard;
+  navigation: NativeStackScreenProps<RootStackParamList, 'Create'>;
 };
 
-export function CreateScreen({board}: CreateScreenProps): JSX.Element {
+export function CreateScreen({
+  board,
+  navigation,
+}: CreateScreenProps): JSX.Element {
   const {t} = useTranslation();
 
   const [gridValues, setValues] = useState(board.values);
@@ -49,20 +56,29 @@ export function CreateScreen({board}: CreateScreenProps): JSX.Element {
     setValues(updatedValues);
   };
 
-  const saveBoard = () => {
-    const board = {
+  const saveBoardEventHandler = async () => {
+    const newBoard: SudokuBoard = {
       id: uuid.v4().toString(),
       values: gridValues,
       markers: Array.from({length: 9}, () => Array.from({length: 9}, () => 0)),
-      difficulty: Difficulty.Unknown,
+      difficulty: Difficulty.Custom,
       createdAt: new Date().toISOString(),
     };
 
-    if (!isValidBoard(board)) {
+    if (!isValidBoard(newBoard)) {
+      Alert.alert(t('invalid-board'));
       return;
     }
 
-    
+    const result: boolean = await saveBoard(newBoard);
+    if (result) {
+      Alert.alert(t('save-board'), t('board-saved'), [
+        {text: t('ok'), onPress: () => navigation.navigation.goBack()},
+        {text: t('cancel'), onPress: () => {}},
+      ]);
+    } else {
+      Alert.alert(t('save-board'), t('board-not-saved'));
+    }
   };
 
   return (
@@ -96,7 +112,7 @@ export function CreateScreen({board}: CreateScreenProps): JSX.Element {
           containerStyle={gStyle.mediumButtonContainer}
           buttonStyle={gStyle.buttonDark}
           titleStyle={gStyle.mediumText}
-          onPress={saveBoard}
+          onPress={saveBoardEventHandler}
         />
       </View>
     </View>
