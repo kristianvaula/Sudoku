@@ -1,18 +1,11 @@
-import {SudokuBoard, getDifficulty} from '../types/types';
-import {getRandomSudokuBoard} from './HttpUtils';
+import {
+  Difficulty,
+  SudokuBoard,
+  SudokuData,
+  getDifficulty,
+} from '../types/types';
+import {getRandomSudokuBoard} from './HttpUtil';
 import uuid from 'react-native-uuid';
-
-type SudokuGrid = {
-  value: number[][];
-  solution: number[][];
-  difficulty: string;
-};
-
-type SudokuData = {
-  newboard: {
-    grids: SudokuGrid[];
-  };
-};
 
 export const isSolved = (board: SudokuBoard): boolean => {
   const n = board.values.length;
@@ -150,7 +143,7 @@ export const createEmptyBoard = (): SudokuBoard => {
     id: uuid.v4().toString(),
     values: Array.from({length: 9}, () => Array.from({length: 9}, () => 0)),
     markers: Array.from({length: 9}, () => Array.from({length: 9}, () => 0)),
-    difficulty: getDifficulty('unknown'),
+    difficulty: Difficulty.Custom,
     createdAt: new Date().toISOString(),
   };
 
