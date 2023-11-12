@@ -23,6 +23,7 @@ export type RootStackParamList = {
   Sudoku: {board: SudokuBoard};
   Create: {board: SudokuBoard};
   StartMenu: undefined;
+  BoardPicker: {boards: SudokuBoard[]};
 };
 
 export enum Difficulty {

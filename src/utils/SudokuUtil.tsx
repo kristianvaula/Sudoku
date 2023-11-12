@@ -143,7 +143,7 @@ export const createEmptyBoard = (): SudokuBoard => {
     id: uuid.v4().toString(),
     values: Array.from({length: 9}, () => Array.from({length: 9}, () => 0)),
     markers: Array.from({length: 9}, () => Array.from({length: 9}, () => 0)),
-    difficulty: Difficulty.Custom,
+    difficulty: Difficulty.Unknown,
     createdAt: new Date().toISOString(),
   };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import '../assets/i18n/i18n';
-import {View} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {getRandomBoard} from '../utils/SudokuUtil';
 import Button from '../components/Button';
@@ -53,9 +53,6 @@ export function StartMenu({navigation}: BoardChooserScreenProps): JSX.Element {
       case BoardChoice.RANDOM:
         navigation.navigate('Sudoku', {board: await getRandomBoard()});
         break;
-      case BoardChoice.SELECT:
-        // TODO implement custom board selection
-        break;
     }
   };
 
@@ -68,27 +65,32 @@ export function StartMenu({navigation}: BoardChooserScreenProps): JSX.Element {
         gStyle.justifyCenter,
       ]}>
       <View style={[gStyle.fullWidth, gStyle.alignCenter]}>
-        <Button
-          text={t('easy')}
-          containerStyle={gStyle.largeButtonContainer}
-          buttonStyle={gStyle.button}
-          titleStyle={gStyle.mediumText}
-          onPress={() => handleButtonPress(BoardChoice.EASY)}
-        />
-        <Button
-          text={t('medium')}
-          containerStyle={gStyle.largeButtonContainer}
-          buttonStyle={gStyle.button}
-          titleStyle={gStyle.mediumText}
-          onPress={() => handleButtonPress(BoardChoice.MEDIUM)}
-        />
-        <Button
-          text={t('hard')}
-          containerStyle={gStyle.largeButtonContainer}
-          buttonStyle={gStyle.button}
-          titleStyle={gStyle.mediumText}
-          onPress={() => handleButtonPress(BoardChoice.HARD)}
-        />
+        <Text style={[gStyle.mediumText, styles.marginBottomLarge]}>
+          {t('pick')}
+        </Text>
+        <View style={[gStyle.fullWidth, gStyle.alignCenter, styles.border]}>
+          <Button
+            text={t('easy')}
+            containerStyle={styles.buttonContainer}
+            buttonStyle={gStyle.button}
+            titleStyle={gStyle.mediumText}
+            onPress={() => handleButtonPress(BoardChoice.EASY)}
+          />
+          <Button
+            text={t('medium')}
+            containerStyle={styles.buttonContainer}
+            buttonStyle={gStyle.button}
+            titleStyle={gStyle.mediumText}
+            onPress={() => handleButtonPress(BoardChoice.MEDIUM)}
+          />
+          <Button
+            text={t('hard')}
+            containerStyle={styles.buttonContainerBorder}
+            buttonStyle={gStyle.button}
+            titleStyle={gStyle.mediumText}
+            onPress={() => handleButtonPress(BoardChoice.HARD)}
+          />
+        </View>
         <Button
           text={t('random')}
           containerStyle={gStyle.largeButtonContainer}
@@ -96,14 +98,26 @@ export function StartMenu({navigation}: BoardChooserScreenProps): JSX.Element {
           titleStyle={gStyle.mediumText}
           onPress={() => handleButtonPress(BoardChoice.RANDOM)}
         />
-        <Button
-          text={t('select')}
-          containerStyle={gStyle.largeButtonContainer}
-          buttonStyle={gStyle.button}
-          titleStyle={gStyle.mediumText}
-          onPress={() => handleButtonPress(BoardChoice.SELECT)}
-        />
       </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    width: '80%',
+    margin: 20,
+  },
+  buttonContainerBorder: {
+    width: '80%',
+    margin: 20,
+    borderBottomWidth: 1,
+  },
+  marginBottomLarge: {
+    marginBottom: 50,
+  },
+  border: {
+    width: '75%',
+    borderBottomWidth: 1,
+  },
+});
