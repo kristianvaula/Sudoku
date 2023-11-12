@@ -20,7 +20,7 @@ const Grid = ({onNumberPress, values, marked}: GridProps): JSX.Element => {
           {row.map((value: number, columnIndex: number) => (
             <GridEntry
               value={value}
-              marked={marked[rowIndex][columnIndex] === 1}
+              marked={marked && marked[rowIndex][columnIndex] === 1}
               key={columnIndex}
               row={rowIndex}
               column={columnIndex}

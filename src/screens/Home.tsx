@@ -8,12 +8,15 @@ import gStyle from '../assets/style';
 import {RootStackParamList} from '../types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import {createEmptyBoard} from '../utils/SudokuUtil';
+import {BoardContext} from '../utils/StateUtil';
+import {getBoards} from '../utils/StorageUtil';
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 export function Home({navigation}: HomeScreenProps): JSX.Element {
   const {t, i18n} = useTranslation();
   const [currentLanguage, setLanguage] = useState('en');
+  const {state} = React.useContext(BoardContext);
 
   const changeLanguage = (value: string) => {
     i18n
@@ -31,12 +34,32 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
     <View style={[gStyle.root, gStyle.fullWidth, gStyle.alignCenter]}>
       <Text style={gStyle.largeText}>{t('sudoku')}</Text>
       <View style={[gStyle.fullWidth, gStyle.alignCenter]}>
+        {state ? (
+          <Button
+            text={t('continue')}
+            containerStyle={gStyle.largeButtonContainer}
+            buttonStyle={gStyle.button}
+            titleStyle={gStyle.mediumText}
+            onPress={() => navigation.navigate('StartMenu')}
+          />
+        ) : (
+          <></>
+        )}
         <Button
-          text={t('start')}
+          text={t('new_game')}
           containerStyle={gStyle.largeButtonContainer}
           buttonStyle={gStyle.button}
           titleStyle={gStyle.mediumText}
           onPress={() => navigation.navigate('StartMenu')}
+        />
+        <Button
+          text={t('select')}
+          containerStyle={gStyle.largeButtonContainer}
+          buttonStyle={gStyle.button}
+          titleStyle={gStyle.mediumText}
+          onPress={async () =>
+            navigation.navigate('BoardPicker', {boards: await getBoards()})
+          }
         />
         <Button
           text={t('create-board')}
