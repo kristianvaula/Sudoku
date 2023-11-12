@@ -22,7 +22,7 @@ export default StyleSheet.create({
     width: '100%',
     height: 'auto',
     borderRadius: 5,
-    flexDirection: 'row',
+    flexDirection: 'column',
     backgroundColor: COLORS.darkBackground,
     padding: 5,
   },
