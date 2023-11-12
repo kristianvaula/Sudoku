@@ -22,6 +22,12 @@
     "save-board": "Lagre Brett",
     "invalid-board": "Ugyldig brett, kontroller verdier og prøv igjen.",
     "board-saved": "Brett lagret.",
-    "board-not-saved": "Brett kunne ikke lagres, prøv igjen."
+    "board-not-saved": "Brett kunne ikke lagres, prøv igjen.",
+    "won": "Du vant!",
+    "congratulations": "Gratulerer! Du har vunnet spillet, trykk OK for å returnere til hovedmenyen.",
+    "exit": "Avslutt",
+    "exit-confirm": "Er du sikker på at du vil avslutte?",
+    "yes": "Ja",
+    "no": "Nei"
   }
 }

@@ -5,7 +5,7 @@ import {Button} from 'react-native-elements';
 import {useTranslation} from 'react-i18next';
 import {COLORS} from '../values/colors';
 import Grid from '../components/Sudoku/Grid';
-import {SudokuBoard, RootStackParamList} from '../types/types';
+import {SudokuBoard, RootStackParamList} from './types/types';
 import {useStateValue} from '../utils/StateUtil';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import Icon from 'react-native-vector-icons/Entypo';

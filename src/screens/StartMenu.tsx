@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 import {getRandomBoard} from '../utils/SudokuUtil';
 import Button from '../components/Button';
 import gStyle from '../assets/style';
-import {Difficulty, RootStackParamList} from '../types/types';
+import {Difficulty, RootStackParamList} from './types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import {getBoard} from '../utils/StorageUtil';
 

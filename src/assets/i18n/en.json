@@ -22,6 +22,12 @@
     "save-board": "Save Board",
     "invalid-board":"Invalid board, control values and try again.",
     "board-saved": "Board saved successfully.",
-    "board-not-saved": "Board not saved, try again."
+    "board-not-saved": "Board not saved, try again.",
+    "won": "You won!",
+    "congratulations": "Congratulations! You have won the game, press OK to return to main menu.",
+    "exit": "Exit", 
+    "exit-confirm": "Are you sure you want to exit?",
+    "yes": "Yes",
+    "no": "No"
   }
 }
