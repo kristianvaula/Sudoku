@@ -6,13 +6,16 @@ import {useTranslation} from 'react-i18next';
 import {COLORS} from '../values/colors';
 import Grid from '../components/Sudoku/Grid';
 import {SudokuBoard, RootStackParamList} from '../types/types';
-import {BoardContext} from '../utils/StateUtil';
+import {useStateValue} from '../utils/StateUtil';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import Icon from 'react-native-vector-icons/Entypo';
 
 type BoardPickerProps = {
   boards: SudokuBoard[];
-  navigation: NativeStackScreenProps<RootStackParamList, 'BoardPicker'>;
+  navigation: NativeStackScreenProps<
+    RootStackParamList,
+    'BoardPicker'
+  >['navigation'];
 };
 
 export function BoardPicker({
@@ -20,12 +23,12 @@ export function BoardPicker({
   navigation,
 }: BoardPickerProps): JSX.Element {
   const {t} = useTranslation();
-  const {dispatch} = React.useContext(BoardContext);
+  const {dispatch} = useStateValue();
 
   const [index, setIndex] = useState(0);
   const [selectedBoard, setSelectedBoard] = useState(boards[index]);
 
-  const [gridValues] = useState(selectedBoard.values);
+  const [gridValues, setGridValues] = useState(selectedBoard.values);
   const gridMarked = Array.from({length: 9}, () =>
     Array.from({length: 9}, () => 0),
   );
@@ -37,6 +40,7 @@ export function BoardPicker({
       setIndex(index + 1);
     }
     setSelectedBoard(boards[index]);
+    setGridValues(boards[index].values);
   };
 
   const prevBoardHandler = () => {
@@ -46,20 +50,19 @@ export function BoardPicker({
       setIndex(index - 1);
     }
     setSelectedBoard(boards[index]);
+    setGridValues(boards[index].values);
   };
 
   const saveBoardHandler = () => {
-    dispatch({content: selectedBoard});
-    navigation.navigation.navigate('Sudoku', {board: selectedBoard});
+    dispatch({type: 'SET_BOARD', payload: selectedBoard});
+    navigation.navigate('Sudoku', {board: selectedBoard});
   };
 
   return (
     <View style={gStyle.root}>
       <View style={gStyle.defaultContainer}>
         <Button
-          icon={<Icon name="save" size={25} color="white" />}
-          iconRight
-          title={t('save')}
+          title={t('select')}
           style={gStyle.button}
           containerStyle={gStyle.mediumButtonContainer}
           buttonStyle={gStyle.buttonDark}

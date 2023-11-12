@@ -2,7 +2,10 @@ import React, {createContext, useContext, useReducer} from 'react';
 import {SudokuBoard} from '../types/types';
 
 interface BoardContextProps {
-  reducer: (state: SudokuBoard, action: SudokuBoard) => any;
+  reducer: (
+    state: SudokuBoard,
+    action: {type: string; payload: SudokuBoard},
+  ) => any;
   initialState: any;
   children: React.ReactNode;
 }
@@ -13,10 +16,14 @@ export const BoardProvider = ({
   reducer,
   initialState,
   children,
-}: BoardContextProps) => (
-  <BoardContext.Provider value={useReducer(reducer, initialState)}>
-    {children}
-  </BoardContext.Provider>
-);
+}: BoardContextProps) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <BoardContext.Provider value={{state, dispatch}}>
+      {children}
+    </BoardContext.Provider>
+  );
+};
 
 export const useStateValue = () => useContext(BoardContext);

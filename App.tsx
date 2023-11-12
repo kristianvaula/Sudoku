@@ -16,14 +16,25 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 function App(): JSX.Element {
   useEffect(() => {
     initDefaultBoards();
-  });
+  }, []);
 
   const initialState = {
     board: undefined,
   };
 
-  const reducer = (state: SudokuBoard, content: SudokuBoard) => {
-    return {...state, board: content};
+  const reducer = (
+    state: SudokuBoard,
+    action: {type: string; payload: SudokuBoard},
+  ) => {
+    switch (action.type) {
+      case 'SET_BOARD':
+        return {
+          ...state,
+          board: action.payload,
+        };
+      default:
+        return state;
+    }
   };
 
   return (
