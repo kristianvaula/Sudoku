@@ -22,14 +22,14 @@ export type RootStackParamList = {
   Home: undefined;
   Sudoku: {board: SudokuBoard};
   Create: {board: SudokuBoard};
-  BoardChooser: undefined;
+  StartMenu: undefined;
 };
 
 export enum Difficulty {
   Easy = 'easy',
   Medium = 'medium',
   Hard = 'hard',
-  Custom = 'custom',
+  Unknown = 'unknown',
 }
 
 export const getDifficulty = (difficulty: string): Difficulty => {
@@ -41,7 +41,7 @@ export const getDifficulty = (difficulty: string): Difficulty => {
     case 'hard':
       return Difficulty.Hard;
     default:
-      return Difficulty.Custom;
+      return Difficulty.Unknown;
   }
 };
 

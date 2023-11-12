@@ -30,7 +30,6 @@ export const initDefaultBoards = async (): Promise<void> => {
         return {};
       });
       console.log('Storing default boards');
-      console.log(boards);
       await AsyncStorage.setItem(BOARDS_KEY, JSON.stringify(boards));
     }
   } catch (e) {
@@ -66,17 +65,21 @@ const loadDefaultBoards = async (): Promise<BoardsType> => {
   }
 };
 
-export const getCustomBoards = async (): Promise<SudokuBoard[]> => {
+export const getBoards = async (): Promise<SudokuBoard[]> => {
+  var res: SudokuBoard[] = [];
   try {
     const data = await AsyncStorage.getItem(BOARDS_KEY);
     if (data !== null) {
       const boards: BoardsType = JSON.parse(data);
-      const customBoards = boards[Difficulty.Custom];
-      if (customBoards) {
-        return Object.values(customBoards);
+      const keys = Object.keys(boards);
+      for (const key of keys) {
+        const boardIds = Object.keys(boards[key]);
+        for (const id of boardIds) {
+          res.push(boards[key][id]);
+        }
       }
     }
-    return [];
+    return res;
   } catch (error) {
     console.log(error);
     return [];

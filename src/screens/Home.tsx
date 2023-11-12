@@ -36,7 +36,7 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
           containerStyle={gStyle.largeButtonContainer}
           buttonStyle={gStyle.button}
           titleStyle={gStyle.mediumText}
-          onPress={() => navigation.navigate('BoardChooser')}
+          onPress={() => navigation.navigate('StartMenu')}
         />
         <Button
           text={t('create-board')}

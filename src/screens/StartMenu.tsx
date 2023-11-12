@@ -14,16 +14,14 @@ enum BoardChoice {
   MEDIUM,
   HARD,
   RANDOM,
-  CUSTOM,
+  SELECT,
 }
 type BoardChooserScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  'BoardChooser'
+  'StartMenu'
 >;
 
-export function BoardChooser({
-  navigation,
-}: BoardChooserScreenProps): JSX.Element {
+export function StartMenu({navigation}: BoardChooserScreenProps): JSX.Element {
   const {t} = useTranslation();
 
   const handleButtonPress = async (choice: BoardChoice) => {
@@ -55,7 +53,7 @@ export function BoardChooser({
       case BoardChoice.RANDOM:
         navigation.navigate('Sudoku', {board: await getRandomBoard()});
         break;
-      case BoardChoice.CUSTOM:
+      case BoardChoice.SELECT:
         // TODO implement custom board selection
         break;
     }
@@ -99,11 +97,11 @@ export function BoardChooser({
           onPress={() => handleButtonPress(BoardChoice.RANDOM)}
         />
         <Button
-          text={t('custom')}
+          text={t('select')}
           containerStyle={gStyle.largeButtonContainer}
           buttonStyle={gStyle.button}
           titleStyle={gStyle.mediumText}
-          onPress={() => handleButtonPress(BoardChoice.RANDOM)}
+          onPress={() => handleButtonPress(BoardChoice.SELECT)}
         />
       </View>
     </View>

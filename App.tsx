@@ -6,7 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from './src/types/types';
 import {COLORS} from './src/values/colors';
-import {BoardChooser} from './src/screens/BoardChooser';
+import {StartMenu} from './src/screens/StartMenu';
 import {initDefaultBoards} from './src/utils/StorageUtil';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -41,8 +41,8 @@ function App(): JSX.Element {
           {({route}) => <SudokuScreen board={route.params.board} />}
         </RootStack.Screen>
         <RootStack.Screen
-          name="BoardChooser"
-          component={BoardChooser}
+          name="StartMenu"
+          component={StartMenu}
           options={{
             title: '',
             headerStyle: {
