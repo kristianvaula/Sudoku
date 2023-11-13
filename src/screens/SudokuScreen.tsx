@@ -47,7 +47,7 @@ export function SudokuScreen({
     if (drawMode === DrawMode.Erase) {
       updateValue(row, column, 0);
     } else if (drawMode === DrawMode.Marker) {
-      updateMarked(row, column, true);
+      updateMarked(row, column);
     } else {
       setSelectedItem([row, column]);
     }
@@ -60,9 +60,10 @@ export function SudokuScreen({
     checkWinState();
   };
 
-  const updateMarked = (row: number, column: number, marking: boolean) => {
+  const updateMarked = (row: number, column: number) => {
     const updatedMarked = [...gridMarked];
-    updatedMarked[row][column] = marking ? 1 : 0;
+    const val = updatedMarked[row][column];
+    updatedMarked[row][column] = val === 0 ? 1 : 0;
     setMarked(updatedMarked);
   };
 
