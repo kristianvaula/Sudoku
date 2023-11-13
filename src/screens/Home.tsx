@@ -17,7 +17,7 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
   const {t, i18n} = useTranslation();
   const [currentLanguage, setLanguage] = useState('en');
   const {state} = useStateValue();
-  console.log(state);
+
   const changeLanguage = (value: string) => {
     i18n
       .changeLanguage(value)
@@ -29,20 +29,21 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
     const nextLanguage = currentLanguage === 'en' ? 'no' : 'en';
     changeLanguage(nextLanguage);
   };
-
   return (
     <View style={[gStyle.root, gStyle.fullWidth, gStyle.alignCenter]}>
       <Text style={gStyle.largeText}>{t('sudoku')}</Text>
       <View style={[gStyle.fullWidth, gStyle.alignCenter]}>
-        {state !== undefined ? (
+        {state.board !== undefined ? (
           <Button
             text={t('continue')}
             containerStyle={gStyle.largeButtonContainer}
             buttonStyle={gStyle.button}
             titleStyle={gStyle.mediumText}
-            onPress={() => navigation.navigate('Sudoku', {board: state})}
+            onPress={() => navigation.navigate('Sudoku', {board: state.board})}
           />
-        ) : null}
+        ) : (
+          <></>
+        )}
         <Button
           text={t('new_game')}
           containerStyle={gStyle.largeButtonContainer}
