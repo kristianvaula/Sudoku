@@ -1,5 +1,5 @@
 # Sudoku 
-This simple Sudoku project was a short solo project using React Native which served as the final exercise in the course Applikasjonsutvikling for mobile enheter. The task was to simply make a Sudoku app using a cross-platform framwork. The project was to be graded as approved or not approved.
+This simple Sudoku project was a short solo project using React Native which served as the final exercise in the course Applikasjonsutvikling for mobile enheter. The task was to simply make a Sudoku app using a cross-platform framwork. The project was to be graded as approved or not approved. See instruction_manual.pdf for info about how to play. 
 
 ## Some screenshots from the application: 
 | Home Screen | In Game |
