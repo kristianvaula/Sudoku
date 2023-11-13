@@ -42,7 +42,7 @@ const loadDefaultBoards = async (): Promise<BoardsType> => {
     easy: {},
     medium: {},
     hard: {},
-    custom: {},
+    unknown: {},
   };
 
   try {
@@ -115,6 +115,8 @@ export const saveBoard = async (board: SudokuBoard): Promise<boolean> => {
     const data = await AsyncStorage.getItem(BOARDS_KEY);
     if (data !== null) {
       const boards: BoardsType = JSON.parse(data);
+      console.log(board.difficulty);
+      console.log(board.id);
       boards[board.difficulty][board.id] = board;
       await AsyncStorage.setItem(BOARDS_KEY, JSON.stringify(boards));
       return true;

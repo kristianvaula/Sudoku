@@ -70,7 +70,7 @@ export function SudokuScreen({
   const checkWinState = () => {
     if (isSolved(gridValues)) {
       Alert.alert(t('won'), t('congratulations'), [
-        {text: t('ok'), onPress: () => navigation.goBack()},
+        {text: t('ok'), onPress: () => navigation.navigate('Home')},
         {text: t('cancel'), onPress: () => {}},
       ]);
     }
