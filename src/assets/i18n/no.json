@@ -29,6 +29,9 @@
     "exit": "Avslutt",
     "exit-confirm": "Er du sikker på at du vil avslutte?",
     "yes": "Ja",
-    "no": "Nei"
+    "no": "Nei",
+    "difficulty-easy": "VANSKELIGHETSGRAD: LETT",
+    "difficulty-medium": "VANSKELIGHETSGRAD: MIDDELS",
+    "difficulty-hard": "VANSKELIGHETSGRAD: VANSKELIG"
   }
 }

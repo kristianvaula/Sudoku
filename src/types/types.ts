@@ -36,10 +36,13 @@ export enum Difficulty {
 export const getDifficulty = (difficulty: string): Difficulty => {
   switch (difficulty) {
     case 'easy':
+    case 'Easy':
       return Difficulty.Easy;
     case 'medium':
+    case 'Medium':
       return Difficulty.Medium;
     case 'hard':
+    case 'Hard':
       return Difficulty.Hard;
     default:
       return Difficulty.Unknown;

@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import gStyle from '../assets/style';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {Button} from 'react-native-elements';
 import {useTranslation} from 'react-i18next';
 import {COLORS} from '../values/colors';
 import Grid from '../components/Sudoku/Grid';
-import {SudokuBoard, RootStackParamList} from '../types/types';
+import {SudokuBoard, RootStackParamList, Difficulty} from '../types/types';
 import {useStateValue} from '../utils/StateUtil';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -33,11 +33,29 @@ export function BoardPicker({
     Array.from({length: 9}, () => 0),
   );
 
+  const getDifficultyString = (diff: Difficulty): string => {
+    switch (diff) {
+      case Difficulty.Easy:
+        return t('difficulty-easy');
+      case Difficulty.Medium:
+        return t('difficulty-medium');
+      case Difficulty.Hard:
+        return t('difficulty-hard');
+      default:
+        return '';
+    }
+  };
+
+  const [difficulty, setDifficulty] = useState(
+    getDifficultyString(selectedBoard.difficulty),
+  );
+
   const nextBoardHandler = () => {
     setIndex(prevIndex => {
       const newIndex = prevIndex === boards.length - 1 ? 0 : prevIndex + 1;
       setSelectedBoard(boards[newIndex]);
       setGridValues(boards[newIndex].values);
+      setDifficulty(getDifficultyString(boards[newIndex].difficulty));
       return newIndex;
     });
   };
@@ -47,6 +65,7 @@ export function BoardPicker({
       const newIndex = prevIndex === 0 ? boards.length - 1 : prevIndex - 1;
       setSelectedBoard(boards[newIndex]);
       setGridValues(boards[newIndex].values);
+      setDifficulty(getDifficultyString(boards[newIndex].difficulty));
       return newIndex;
     });
   };
@@ -67,6 +86,7 @@ export function BoardPicker({
           titleStyle={gStyle.mediumText}
           onPress={() => saveBoardHandler()}
         />
+        <Text style={[gStyle.mediumText]}>{difficulty}</Text>
         <Grid
           onNumberPress={() => {}}
           values={gridValues}

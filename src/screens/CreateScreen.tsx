@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import gStyle from '../assets/style';
 import {View, StyleSheet, Alert} from 'react-native';
 import {Button} from 'react-native-elements';
@@ -7,17 +7,22 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {COLORS} from '../values/colors';
 import NumberInterface from '../components/Sudoku/NumberInterface';
 import Grid from '../components/Sudoku/Grid';
-import {Difficulty, DrawMode, SudokuBoard, getDifficulty} from '../types/types';
+import {DrawMode, SudokuBoard, getDifficulty} from '../types/types';
 import {isValidBoard} from '../utils/SudokuUtil';
 import uuid from 'react-native-uuid';
 import {RootStackParamList} from '../types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import {saveBoard} from '../utils/StorageUtil';
 import DifficultyButtons from '../components/DifficultyButtons';
+import {HeaderBackButton} from '@react-navigation/elements';
+import {useStateValue} from '../utils/StateUtil';
 
 type CreateScreenProps = {
   board: SudokuBoard;
-  navigation: NativeStackScreenProps<RootStackParamList, 'Create'>;
+  navigation: NativeStackScreenProps<
+    RootStackParamList,
+    'Create'
+  >['navigation'];
 };
 
 export function CreateScreen({
@@ -25,12 +30,11 @@ export function CreateScreen({
   navigation,
 }: CreateScreenProps): JSX.Element {
   const {t} = useTranslation();
+  const {dispatch} = useStateValue();
 
   const [gridValues, setValues] = useState(board.values);
-  const [difficulty, setDifficulty] = useState(Difficulty.Unknown);
-  const marked = Array.from({length: 9}, () =>
-    Array.from({length: 9}, () => 0),
-  );
+  const [difficulty, setDifficulty] = useState(getDifficulty(''));
+  const marked = board.markers;
 
   const [drawMode, setDrawMode] = useState(DrawMode.Pencil);
   const [selectedItem, setSelectedItem] = useState<[number, number]>([-1, -1]);
@@ -58,6 +62,23 @@ export function CreateScreen({
     setValues(updatedValues);
   };
 
+  useEffect(() => {
+    navigation.setOptions({
+      // eslint-disable-next-line react/no-unstable-nested-components
+      headerLeft: props => (
+        <HeaderBackButton
+          {...props}
+          onPress={() => {
+            const state = board;
+            state.values = gridValues;
+            dispatch({type: 'SET_BOARD', payload: state});
+            navigation.navigate('Home');
+          }}
+        />
+      ),
+    });
+  });
+
   const saveBoardEventHandler = async () => {
     const newBoard: SudokuBoard = {
       id: uuid.v4().toString(),
@@ -75,7 +96,7 @@ export function CreateScreen({
     const result: boolean = await saveBoard(newBoard);
     if (result) {
       Alert.alert(t('save-board'), t('board-saved'), [
-        {text: t('ok'), onPress: () => navigation.navigation.goBack()},
+        {text: t('ok'), onPress: () => navigation.goBack()},
         {text: t('cancel'), onPress: () => {}},
       ]);
     } else {
