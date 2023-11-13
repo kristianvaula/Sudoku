@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, ViewStyle} from 'react-native';
 import {COLORS} from '../../values/colors';
 
 type GridEntryProps = {
@@ -8,6 +8,7 @@ type GridEntryProps = {
   row: number;
   column: number;
   onNumberPress: (row: number, column: number) => void;
+  containerStyle?: ViewStyle[];
 };
 
 const GridEntry = ({
@@ -16,6 +17,7 @@ const GridEntry = ({
   row,
   column,
   onNumberPress,
+  containerStyle,
 }: GridEntryProps): JSX.Element => {
   const handleNumberPress = () => {
     onNumberPress(row, column);
@@ -23,7 +25,11 @@ const GridEntry = ({
 
   return (
     <TouchableOpacity
-      style={marked ? styles.containerMarked : styles.container}
+      style={[
+        styles.container,
+        marked ? styles.containerMarked : styles.containerUnmarked,
+        containerStyle,
+      ]}
       onPress={handleNumberPress}
       key={column}>
       <Text style={styles.numberText}>{value === 0 ? '' : value}</Text>
@@ -35,11 +41,11 @@ const styles = StyleSheet.create({
   container: {
     height: 50,
     borderWidth: 0.5,
+  },
+  containerUnmarked: {
     backgroundColor: COLORS.white,
   },
   containerMarked: {
-    height: 50,
-    borderWidth: 0.5,
     backgroundColor: COLORS.red,
   },
   numberText: {
