@@ -108,7 +108,11 @@ export function SudokuScreen({
             title={t('erase')}
             style={gStyle.button}
             containerStyle={gStyle.mediumButtonContainer}
-            buttonStyle={gStyle.buttonDark}
+            buttonStyle={
+              drawMode === DrawMode.Erase
+                ? gStyle.buttonDark
+                : gStyle.buttonSelected
+            }
             titleStyle={gStyle.mediumText}
             onPress={() =>
               drawMode === DrawMode.Erase
@@ -121,7 +125,11 @@ export function SudokuScreen({
             title={t('notes')}
             style={gStyle.button}
             containerStyle={gStyle.mediumButtonContainer}
-            buttonStyle={gStyle.buttonDark}
+            buttonStyle={
+              drawMode === DrawMode.Marker
+                ? gStyle.buttonDark
+                : gStyle.buttonSelected
+            }
             titleStyle={gStyle.mediumText}
             onPress={() =>
               drawMode === DrawMode.Marker

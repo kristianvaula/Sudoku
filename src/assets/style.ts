@@ -68,6 +68,9 @@ export default StyleSheet.create({
   buttonDark: {
     backgroundColor: COLORS.black,
   },
+  buttonSelected: {
+    backgroundColor: COLORS.selected,
+  },
   difficultyPickerContainer: {
     width: '100%',
     margin: 10,
