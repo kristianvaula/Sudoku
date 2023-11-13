@@ -17,6 +17,9 @@ export default StyleSheet.create({
   justifyCenter: {
     justifyContent: 'center',
   },
+  darkBackground: {
+    backgroundColor: COLORS.darkBackground,
+  },
   defaultContainer: {
     alignItems: 'center',
     width: '100%',

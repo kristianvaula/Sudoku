@@ -4,7 +4,6 @@ import {View, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Entypo';
-import {COLORS} from '../values/colors';
 import NumberInterface from '../components/Sudoku/NumberInterface';
 import Grid from '../components/Sudoku/Grid';
 import {DrawMode, SudokuBoard} from '../types/types';
@@ -54,7 +53,7 @@ export function SudokuScreen({board}: SudokuScreenProps): JSX.Element {
   };
 
   return (
-    <View style={gStyle.root}>
+    <View style={[gStyle.root, gStyle.darkBackground]}>
       <View style={gStyle.defaultContainer}>
         <Grid
           onNumberPress={handleGridPress}
@@ -103,13 +102,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   numberContainer: {
-    backgroundColor: COLORS.darkBackground,
     height: 100,
     width: '100%',
     padding: 10,
   },
   choiceContainer: {
-    backgroundColor: COLORS.darkBackground,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
