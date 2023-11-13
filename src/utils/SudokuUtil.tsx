@@ -130,7 +130,7 @@ export const createBoard = (data: SudokuData): SudokuBoard => {
   const board = {
     id: uuid.v4().toString(),
     values: value,
-    markers: Array(value.length).fill(Array(value.length).fill(0)),
+    markers: Array.from({length: 9}, () => Array.from({length: 9}, () => 0)),
     difficulty: getDifficulty(difficulty),
     createdAt: new Date().toISOString(),
   };

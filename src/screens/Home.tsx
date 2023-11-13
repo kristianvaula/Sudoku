@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../assets/i18n/i18n';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import LanguageSwitch from '../components/LanguageSwitch';
 import Button from '../components/Button';
@@ -31,8 +31,11 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
   };
   return (
     <View style={[gStyle.root, gStyle.fullWidth, gStyle.alignCenter]}>
-      <Text style={gStyle.largeText}>{t('sudoku')}</Text>
-      <View style={[gStyle.fullWidth, gStyle.alignCenter]}>
+      <View style={styles.imageContainer}>
+        <Image style={styles.logo} source={require('../assets/logo.png')} />
+      </View>
+      <View
+        style={[gStyle.fullWidth, gStyle.alignCenter, styles.choiceContainer]}>
         {state.board !== undefined ? (
           <Button
             text={t('continue')}
@@ -70,7 +73,7 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
           }
         />
       </View>
-      <View style={[styles.languageBox, gStyle.fullWidth, gStyle.alignCenter]}>
+      <View style={[gStyle.fullWidth, gStyle.alignCenter]}>
         <LanguageSwitch
           value={currentLanguage === 'en'}
           onValueChanged={toggleSwitch}
@@ -84,17 +87,27 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
 }
 
 const styles = StyleSheet.create({
+  choiceContainer: {
+    height: '65%',
+  },
   switch: {
     marginTop: '20%',
     border: '2px solid white',
     borderWidth: 5,
     transform: [{scaleX: 2}, {scaleY: 2}],
   },
-  languageBox: {
-    marginTop: '25%',
-  },
   languageSwitch: {
     margin: 5,
     width: '75%',
+  },
+  imageContainer: {
+    width: '100%',
+    height: '30%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logo: {
+    width: 400,
+    resizeMode: 'contain',
   },
 });

@@ -65,7 +65,7 @@ export function StartMenu({navigation}: BoardChooserScreenProps): JSX.Element {
         gStyle.justifyCenter,
       ]}>
       <View style={[gStyle.fullWidth, gStyle.alignCenter]}>
-        <Text style={[gStyle.mediumText, styles.marginBottomLarge]}>
+        <Text style={[gStyle.largeText, styles.marginBottomLarge]}>
           {t('pick')}
         </Text>
         <View style={[gStyle.fullWidth, gStyle.alignCenter, styles.border]}>
