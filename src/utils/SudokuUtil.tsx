@@ -3,15 +3,15 @@ import {
   SudokuBoard,
   SudokuData,
   getDifficulty,
-} from '../types/types';
+} from '../screens/types/types';
 import {getRandomSudokuBoard} from './HttpUtil';
 import uuid from 'react-native-uuid';
 
-export const isSolved = (board: SudokuBoard): boolean => {
-  const n = board.values.length;
+export const isSolved = (values: number[][]): boolean => {
+  const n = values.length;
 
   for (let i = 0; i < n; i++) {
-    const row = board.values[i];
+    const row = values[i];
 
     if (row.includes(0)) {
       return false;
@@ -20,14 +20,14 @@ export const isSolved = (board: SudokuBoard): boolean => {
 
   for (let i = 0; i < n; i++) {
     for (let j = 1; j <= n; j++) {
-      if (!board.values[i].includes(j)) {
+      if (!values[i].includes(j)) {
         return false;
       }
     }
   }
 
   for (let i = 0; i < n; i++) {
-    const column = board.values.map(row => row[i]);
+    const column = values.map(row => row[i]);
 
     for (let j = 1; j <= n; j++) {
       if (!column.includes(j)) {
@@ -42,7 +42,7 @@ export const isSolved = (board: SudokuBoard): boolean => {
       const subGrid = [];
       for (let k = 0; k < subGridSize; k++) {
         for (let l = 0; l < subGridSize; l++) {
-          subGrid.push(board.values[i + k][j + l]);
+          subGrid.push(values[i + k][j + l]);
         }
       }
 

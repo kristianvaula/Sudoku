@@ -7,10 +7,10 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {COLORS} from '../values/colors';
 import NumberInterface from '../components/Sudoku/NumberInterface';
 import Grid from '../components/Sudoku/Grid';
-import {Difficulty, DrawMode, SudokuBoard} from '../types/types';
+import {Difficulty, DrawMode, SudokuBoard} from './types/types';
 import {isValidBoard} from '../utils/SudokuUtil';
 import uuid from 'react-native-uuid';
-import {RootStackParamList} from '../types/types';
+import {RootStackParamList} from './types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import {saveBoard} from '../utils/StorageUtil';
 

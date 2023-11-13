@@ -4,7 +4,7 @@ import {SudokuScreen} from './src/screens/SudokuScreen';
 import {CreateScreen} from './src/screens/CreateScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {RootStackParamList, SudokuBoard} from './src/types/types';
+import {RootStackParamList, SudokuBoard} from './src/screens/types/types';
 import {COLORS} from './src/values/colors';
 import {StartMenu} from './src/screens/StartMenu';
 import {initDefaultBoards} from './src/utils/StorageUtil';
@@ -16,14 +16,25 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 function App(): JSX.Element {
   useEffect(() => {
     initDefaultBoards();
-  });
+  }, []);
 
   const initialState = {
     board: undefined,
   };
 
-  const reducer = (state: SudokuBoard, content: SudokuBoard) => {
-    return {...state, board: content};
+  const reducer = (
+    state: SudokuBoard,
+    action: {type: string; payload: SudokuBoard},
+  ) => {
+    switch (action.type) {
+      case 'SET_BOARD':
+        return {
+          ...state,
+          board: action.payload,
+        };
+      default:
+        return state;
+    }
   };
 
   return (
@@ -48,8 +59,14 @@ function App(): JSX.Element {
               headerStyle: {
                 backgroundColor: COLORS.lightBackground,
               },
+              headerTintColor: COLORS.white,
             }}>
-            {({route}) => <SudokuScreen board={route.params.board} />}
+            {({route, navigation}) => (
+              <SudokuScreen
+                board={route.params.board}
+                navigation={navigation}
+              />
+            )}
           </RootStack.Screen>
           <RootStack.Screen
             name="StartMenu"
@@ -69,6 +86,7 @@ function App(): JSX.Element {
               headerStyle: {
                 backgroundColor: COLORS.lightBackground,
               },
+              headerTintColor: COLORS.white,
             }}>
             {({route, navigation}) => (
               <CreateScreen
@@ -84,6 +102,7 @@ function App(): JSX.Element {
               headerStyle: {
                 backgroundColor: COLORS.lightBackground,
               },
+              headerTintColor: COLORS.white,
             }}>
             {({route, navigation}) => (
               <BoardPicker

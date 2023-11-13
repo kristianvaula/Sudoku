@@ -5,10 +5,10 @@ import {useTranslation} from 'react-i18next';
 import LanguageSwitch from '../components/LanguageSwitch';
 import Button from '../components/Button';
 import gStyle from '../assets/style';
-import {RootStackParamList} from '../types/types';
+import {RootStackParamList} from './types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import {createEmptyBoard} from '../utils/SudokuUtil';
-import {BoardContext} from '../utils/StateUtil';
+import {useStateValue} from '../utils/StateUtil';
 import {getBoards} from '../utils/StorageUtil';
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
@@ -16,8 +16,8 @@ type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 export function Home({navigation}: HomeScreenProps): JSX.Element {
   const {t, i18n} = useTranslation();
   const [currentLanguage, setLanguage] = useState('en');
-  const {state} = React.useContext(BoardContext);
-
+  const {state} = useStateValue();
+  console.log(state);
   const changeLanguage = (value: string) => {
     i18n
       .changeLanguage(value)
@@ -34,17 +34,15 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
     <View style={[gStyle.root, gStyle.fullWidth, gStyle.alignCenter]}>
       <Text style={gStyle.largeText}>{t('sudoku')}</Text>
       <View style={[gStyle.fullWidth, gStyle.alignCenter]}>
-        {state ? (
+        {state !== undefined ? (
           <Button
             text={t('continue')}
             containerStyle={gStyle.largeButtonContainer}
             buttonStyle={gStyle.button}
             titleStyle={gStyle.mediumText}
-            onPress={() => navigation.navigate('StartMenu')}
+            onPress={() => navigation.navigate('Sudoku', {board: state})}
           />
-        ) : (
-          <></>
-        )}
+        ) : null}
         <Button
           text={t('new_game')}
           containerStyle={gStyle.largeButtonContainer}
