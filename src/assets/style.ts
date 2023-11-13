@@ -45,20 +45,40 @@ export default StyleSheet.create({
   },
   largeButtonContainer: {
     width: '75%',
+    borderRadius: 5,
     margin: 20,
+    borderWidth: 1,
+    borderColor: COLORS.white,
   },
   mediumButtonContainer: {
     width: '40%',
+    borderRadius: 5,
     margin: 20,
+    borderWidth: 1,
+    borderColor: COLORS.white,
   },
   smallButtonContainer: {
     width: '25%',
     margin: 20,
+    borderRadius: 5,
   },
   button: {
-    backgroundColor: COLORS.darkBackground,
+    backgroundColor: COLORS.black,
   },
   buttonDark: {
+    backgroundColor: COLORS.black,
+  },
+  difficultyPickerContainer: {
+    width: '100%',
+    margin: 10,
+    marginTop: 15,
+    borderRadius: 5,
+  },
+  difficultyPickerText: {
+    fontSize: 15,
+    color: COLORS.white,
+  },
+  difficultyPickerButtons: {
     backgroundColor: COLORS.black,
   },
 });

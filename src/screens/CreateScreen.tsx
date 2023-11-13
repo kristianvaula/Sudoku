@@ -7,12 +7,13 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {COLORS} from '../values/colors';
 import NumberInterface from '../components/Sudoku/NumberInterface';
 import Grid from '../components/Sudoku/Grid';
-import {Difficulty, DrawMode, SudokuBoard} from './types/types';
+import {Difficulty, DrawMode, SudokuBoard, getDifficulty} from '../types/types';
 import {isValidBoard} from '../utils/SudokuUtil';
 import uuid from 'react-native-uuid';
-import {RootStackParamList} from './types/types';
+import {RootStackParamList} from '../types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import {saveBoard} from '../utils/StorageUtil';
+import DifficultyButtons from '../components/DifficultyButtons';
 
 type CreateScreenProps = {
   board: SudokuBoard;
@@ -26,6 +27,7 @@ export function CreateScreen({
   const {t} = useTranslation();
 
   const [gridValues, setValues] = useState(board.values);
+  const [difficulty, setDifficulty] = useState(Difficulty.Unknown);
   const marked = Array.from({length: 9}, () =>
     Array.from({length: 9}, () => 0),
   );
@@ -61,7 +63,7 @@ export function CreateScreen({
       id: uuid.v4().toString(),
       values: gridValues,
       markers: Array.from({length: 9}, () => Array.from({length: 9}, () => 0)),
-      difficulty: Difficulty.Unknown,
+      difficulty: difficulty,
       createdAt: new Date().toISOString(),
     };
 
@@ -81,39 +83,49 @@ export function CreateScreen({
     }
   };
 
+  const handleDifficultyChange = (diff: string) => {
+    setDifficulty(getDifficulty(diff));
+  };
+
   return (
     <View style={gStyle.root}>
       <View style={gStyle.defaultContainer}>
+        <DifficultyButtons
+          onChange={handleDifficultyChange}
+          containerStyle={gStyle.difficultyPickerContainer}
+          buttonStyle={gStyle.difficultyPickerButtons}
+          titleStyle={gStyle.difficultyPickerText}
+        />
         <Grid
           onNumberPress={handleGridPress}
           values={gridValues}
           marked={marked}
         />
-      </View>
-      <NumberInterface onNumberPress={handleNumberPress} />
-      <View style={styles.choiceContainer}>
-        <Button
-          icon={<Icon name="eraser" size={25} color="white" />}
-          title={t('erase')}
-          style={gStyle.button}
-          containerStyle={gStyle.mediumButtonContainer}
-          buttonStyle={gStyle.buttonDark}
-          titleStyle={gStyle.mediumText}
-          onPress={() =>
-            drawMode === DrawMode.Erase
-              ? setDrawMode(DrawMode.Pencil)
-              : setDrawMode(DrawMode.Erase)
-          }
-        />
-        <Button
-          icon={<Icon name="save" size={25} color="white" />}
-          title={t('save')}
-          style={gStyle.button}
-          containerStyle={gStyle.mediumButtonContainer}
-          buttonStyle={gStyle.buttonDark}
-          titleStyle={gStyle.mediumText}
-          onPress={saveBoardEventHandler}
-        />
+        <NumberInterface onNumberPress={handleNumberPress} />
+        <View style={styles.choiceContainer}>
+          <Button
+            icon={<Icon name="eraser" size={25} color="white" />}
+            title={t('erase')}
+            style={gStyle.button}
+            containerStyle={gStyle.mediumButtonContainer}
+            buttonStyle={gStyle.buttonDark}
+            titleStyle={gStyle.mediumText}
+            onPress={() =>
+              drawMode === DrawMode.Erase
+                ? setDrawMode(DrawMode.Pencil)
+                : setDrawMode(DrawMode.Erase)
+            }
+          />
+          <Button
+            icon={<Icon name="save" size={25} color="white" />}
+            title={t('save')}
+            style={gStyle.button}
+            containerStyle={gStyle.mediumButtonContainer}
+            buttonStyle={gStyle.buttonDark}
+            titleStyle={gStyle.mediumText}
+            onPress={saveBoardEventHandler}
+          />
+        </View>
       </View>
     </View>
   );
