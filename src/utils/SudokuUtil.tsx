@@ -3,7 +3,7 @@ import {
   SudokuBoard,
   SudokuData,
   getDifficulty,
-} from '../screens/types/types';
+} from '../types/types';
 import {getRandomSudokuBoard} from './HttpUtil';
 import uuid from 'react-native-uuid';
 

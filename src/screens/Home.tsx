@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 import LanguageSwitch from '../components/LanguageSwitch';
 import Button from '../components/Button';
 import gStyle from '../assets/style';
-import {RootStackParamList} from './types/types';
+import {RootStackParamList} from '../types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import {createEmptyBoard} from '../utils/SudokuUtil';
 import {useStateValue} from '../utils/StateUtil';

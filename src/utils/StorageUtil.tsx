@@ -1,4 +1,4 @@
-import {Difficulty, SudokuBoard, SudokuData} from '../screens/types/types';
+import {Difficulty, SudokuBoard, SudokuData} from '../types/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createBoard} from './SudokuUtil';
 

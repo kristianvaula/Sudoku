@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useReducer} from 'react';
-import {SudokuBoard} from '../screens/types/types';
+import {SudokuBoard} from '../types/types';
 
 interface BoardContextProps {
   reducer: (

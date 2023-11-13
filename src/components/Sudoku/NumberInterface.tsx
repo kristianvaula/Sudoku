@@ -31,17 +31,21 @@ const NumberInterface = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.darkBackground,
+    backgroundColor: COLORS.white,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: 10,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: COLORS.black,
+    margin: 10,
   },
   numberContainer: {
     height: 40,
     borderWidth: 1,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
     width: 40,
-    backgroundColor: COLORS.white,
   },
   numberText: {
     textAlign: 'center',

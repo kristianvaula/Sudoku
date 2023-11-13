@@ -7,9 +7,9 @@ import Icon from 'react-native-vector-icons/Entypo';
 import NumberInterface from '../components/Sudoku/NumberInterface';
 import Grid from '../components/Sudoku/Grid';
 import {HeaderBackButton} from '@react-navigation/elements';
-import {DrawMode, SudokuBoard} from './types/types';
+import {DrawMode, SudokuBoard} from '../types/types';
 import {isSolved} from '../utils/SudokuUtil';
-import {RootStackParamList} from './types/types';
+import {RootStackParamList} from '../types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import {useStateValue} from '../utils/StateUtil';
 
@@ -100,35 +100,35 @@ export function SudokuScreen({
           values={gridValues}
           marked={gridMarked}
         />
-      </View>
-      <NumberInterface onNumberPress={handleNumberPress} />
-      <View style={styles.choiceContainer}>
-        <Button
-          icon={<Icon name="eraser" size={25} color="white" />}
-          title={t('erase')}
-          style={gStyle.button}
-          containerStyle={gStyle.mediumButtonContainer}
-          buttonStyle={gStyle.buttonDark}
-          titleStyle={gStyle.mediumText}
-          onPress={() =>
-            drawMode === DrawMode.Erase
-              ? setDrawMode(DrawMode.Pencil)
-              : setDrawMode(DrawMode.Erase)
-          }
-        />
-        <Button
-          icon={<Icon name="edit" size={25} color="white" />}
-          title={t('notes')}
-          style={gStyle.button}
-          containerStyle={gStyle.mediumButtonContainer}
-          buttonStyle={gStyle.buttonDark}
-          titleStyle={gStyle.mediumText}
-          onPress={() =>
-            drawMode === DrawMode.Marker
-              ? setDrawMode(DrawMode.Pencil)
-              : setDrawMode(DrawMode.Marker)
-          }
-        />
+        <NumberInterface onNumberPress={handleNumberPress} />
+        <View style={styles.choiceContainer}>
+          <Button
+            icon={<Icon name="eraser" size={25} color="white" />}
+            title={t('erase')}
+            style={gStyle.button}
+            containerStyle={gStyle.mediumButtonContainer}
+            buttonStyle={gStyle.buttonDark}
+            titleStyle={gStyle.mediumText}
+            onPress={() =>
+              drawMode === DrawMode.Erase
+                ? setDrawMode(DrawMode.Pencil)
+                : setDrawMode(DrawMode.Erase)
+            }
+          />
+          <Button
+            icon={<Icon name="edit" size={25} color="white" />}
+            title={t('notes')}
+            style={gStyle.button}
+            containerStyle={gStyle.mediumButtonContainer}
+            buttonStyle={gStyle.buttonDark}
+            titleStyle={gStyle.mediumText}
+            onPress={() =>
+              drawMode === DrawMode.Marker
+                ? setDrawMode(DrawMode.Pencil)
+                : setDrawMode(DrawMode.Marker)
+            }
+          />
+        </View>
       </View>
     </View>
   );

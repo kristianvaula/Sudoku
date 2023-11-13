@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 import {getRandomBoard} from '../utils/SudokuUtil';
 import Button from '../components/Button';
 import gStyle from '../assets/style';
-import {Difficulty, RootStackParamList} from './types/types';
+import {Difficulty, RootStackParamList} from '../types/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack/lib/typescript/src/types';
 import {getBoard} from '../utils/StorageUtil';
 
@@ -71,21 +71,21 @@ export function StartMenu({navigation}: BoardChooserScreenProps): JSX.Element {
         <View style={[gStyle.fullWidth, gStyle.alignCenter, styles.border]}>
           <Button
             text={t('easy')}
-            containerStyle={styles.buttonContainer}
+            containerStyle={gStyle.largeButtonContainer}
             buttonStyle={gStyle.button}
             titleStyle={gStyle.mediumText}
             onPress={() => handleButtonPress(BoardChoice.EASY)}
           />
           <Button
             text={t('medium')}
-            containerStyle={styles.buttonContainer}
+            containerStyle={gStyle.largeButtonContainer}
             buttonStyle={gStyle.button}
             titleStyle={gStyle.mediumText}
             onPress={() => handleButtonPress(BoardChoice.MEDIUM)}
           />
           <Button
             text={t('hard')}
-            containerStyle={styles.buttonContainerBorder}
+            containerStyle={gStyle.largeButtonContainer}
             buttonStyle={gStyle.button}
             titleStyle={gStyle.mediumText}
             onPress={() => handleButtonPress(BoardChoice.HARD)}
@@ -104,10 +104,6 @@ export function StartMenu({navigation}: BoardChooserScreenProps): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    width: '80%',
-    margin: 20,
-  },
   buttonContainerBorder: {
     width: '80%',
     margin: 20,

@@ -2,6 +2,7 @@ import React from 'react';
 import '../assets/i18n/i18n';
 import {useTranslation} from 'react-i18next';
 import {COLORS} from '../values/colors';
+import gStyle from '../assets/style';
 
 import {
   StyleSheet,
@@ -31,7 +32,7 @@ const LanguageSwitch = ({
 
   return (
     <TouchableOpacity
-      style={[style, styles.container]}
+      style={[style, styles.container, gStyle.largeButtonContainer]}
       onPress={onValueChanged}>
       <Text style={styles.text}>{t('change-language')}</Text>
       <Image source={value ? onImage : offImage} style={styles.image} />
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: COLORS.darkBackground,
+    backgroundColor: COLORS.black,
     padding: 5,
     borderRadius: 5,
   },

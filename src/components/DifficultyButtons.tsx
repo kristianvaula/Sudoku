@@ -42,18 +42,15 @@ const DifficultyButtons = ({
       selectedIndex={Object.values(Difficulty).indexOf(state)}
       buttons={buttonComponents()}
       buttonStyle={buttonStyle}
-      containerStyle={[containerStyle, styles.button]}
+      selectedButtonStyle={styles.selectedStyle}
+      containerStyle={containerStyle}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: COLORS.darkBackground,
-  },
-  icon: {
-    width: 20,
-    height: 20,
+  selectedStyle: {
+    backgroundColor: COLORS.selected,
   },
 });
 

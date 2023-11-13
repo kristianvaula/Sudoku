@@ -1,7 +1,8 @@
 export const COLORS = {
-  lightBackground: '#6E5151',
-  darkBackground: '#4C1F1F',
+  lightBackground: '#008b84a7',
+  darkBackground: '#006a65a7',
   white: '#FFFFFF',
-  black: '#000000',
+  black: '#080808',
   red: '#ff6a6a',
+  selected: '#00302ea7',
 };
