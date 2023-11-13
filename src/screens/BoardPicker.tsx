@@ -25,7 +25,7 @@ export function BoardPicker({
   const {t} = useTranslation();
   const {dispatch} = useStateValue();
 
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(Number(0));
   const [selectedBoard, setSelectedBoard] = useState(boards[index]);
 
   const [gridValues, setGridValues] = useState(selectedBoard.values);
@@ -34,23 +34,21 @@ export function BoardPicker({
   );
 
   const nextBoardHandler = () => {
-    if (index === boards.length - 1) {
-      setIndex(0);
-    } else {
-      setIndex(index + 1);
-    }
-    setSelectedBoard(boards[index]);
-    setGridValues(boards[index].values);
+    setIndex(prevIndex => {
+      const newIndex = prevIndex === boards.length - 1 ? 0 : prevIndex + 1;
+      setSelectedBoard(boards[newIndex]);
+      setGridValues(boards[newIndex].values);
+      return newIndex;
+    });
   };
 
   const prevBoardHandler = () => {
-    if (index === 0) {
-      setIndex(boards.length - 1);
-    } else {
-      setIndex(index - 1);
-    }
-    setSelectedBoard(boards[index]);
-    setGridValues(boards[index].values);
+    setIndex(prevIndex => {
+      const newIndex = prevIndex === 0 ? boards.length - 1 : prevIndex - 1;
+      setSelectedBoard(boards[newIndex]);
+      setGridValues(boards[newIndex].values);
+      return newIndex;
+    });
   };
 
   const saveBoardHandler = () => {
