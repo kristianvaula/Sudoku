@@ -52,7 +52,7 @@ export function Home({navigation}: HomeScreenProps): JSX.Element {
           onPress={() => navigation.navigate('StartMenu')}
         />
         <Button
-          text={t('select')}
+          text={t('select-board')}
           containerStyle={gStyle.largeButtonContainer}
           buttonStyle={gStyle.button}
           titleStyle={gStyle.mediumText}

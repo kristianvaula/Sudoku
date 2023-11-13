@@ -86,7 +86,9 @@ export function BoardPicker({
           titleStyle={gStyle.mediumText}
           onPress={() => saveBoardHandler()}
         />
-        <Text style={[gStyle.mediumText]}>{difficulty}</Text>
+        <View style={styles.diffContainer}>
+          <Text style={[styles.diffText]}>{difficulty}</Text>
+        </View>
         <Grid
           onNumberPress={() => {}}
           values={gridValues}
@@ -137,5 +139,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
+  },
+  diffContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  diffText: {
+    color: COLORS.white,
+    fontSize: 20,
+    fontWeight: 'bold',
+    width: '90%',
+    marginLeft: 10,
+    textAlign: 'left',
   },
 });
