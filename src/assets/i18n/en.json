@@ -10,6 +10,7 @@
     "easy": "EASY",
     "medium": "MEDIUM",
     "hard": "HARD",
+    "unknown": "UNKNOWN",
     "random": "RANDOM",
     "select": "CHOOSE",
     "pick": "PICK MODE",

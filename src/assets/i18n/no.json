@@ -10,6 +10,7 @@
     "easy": "LETT",
     "medium": "MIDDELS",
     "hard": "VANSKELIG",
+    "unknown": "UKJENT",
     "random": "TILFELDIG",
     "select": "VELG",
     "pick": "VELG MODUS",
